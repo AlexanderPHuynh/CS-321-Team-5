@@ -8,10 +8,10 @@ package Timer;
  *
  * @author aly35
  */
-import Timer.TimeAndDate;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
+
 /**
  *
  * @author aly35
@@ -20,32 +20,52 @@ public class SaveTimer {
 
    private TimeAndDate startTime;
    private TimeAndDate endTime;
-   private File outputFile;
+   private final File outputFile = new File("outputFile.txt");
+  
    
-   public SaveTimer(TimeAndDate start, TimeAndDate end, File out)
+   public SaveTimer()
    {
-    startTime = start;
-    endTime = end;
-    outputFile = out;
+    
+    try {
+      if (outputFile.createNewFile()) 
+        {
+        System.out.println("File created: " + outputFile.getName());
+        } 
+      else 
+        {
+        System.out.println("File already exists.");
+        }
+        } 
+    catch (IOException e) 
+      {
+      System.out.println("An error occurred.");
+      }
+    
+
    }
 
    
 
 
 
-public void SaveTimer(TimeAndDate startTime, TimeAndDate endTime, File file)
+public void SaveToFile(TimeAndDate start, TimeAndDate end)
     {
-    try
+        
+    startTime = start;
+    endTime = end;
+    boolean append = true;
+    try (FileWriter writer = new FileWriter("outputFile.txt" , append))
         {
-        FileWriter writer = new FileWriter(file.getName());
-        writer.write(startTime.getCurrentTime());
+        writer.write(startTime.getEndTime());
+        writer.write("\n");
         writer.write(endTime.getEndTime());
+        writer.write("\n");
         writer.close();
+        System.out.println("Successfully wrote to the file.");
         }
     catch(IOException error)
         {
         System.out.println("An error occured while writing to file");
-        error.printStackTrace();
         }
     }
 }

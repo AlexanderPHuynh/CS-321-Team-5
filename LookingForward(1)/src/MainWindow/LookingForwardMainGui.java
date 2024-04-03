@@ -73,9 +73,6 @@ public class LookingForwardMainGui extends javax.swing.JFrame {
 
     private void NewTimerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTimerButtonActionPerformed
         // TODO add your handling code here:
-    ProgressBarGraphics progressBar = new ProgressBarGraphics();
-    JProgressBar graphicBar = new JProgressBar();
-    graphicBar.setValue(progressBar.PercentageComplete());
     }//GEN-LAST:event_NewTimerButtonActionPerformed
 
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed

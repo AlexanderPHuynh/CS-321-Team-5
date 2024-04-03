@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package MainWindow;
+import Timer.CreateTimer;
 import javax.swing.*;
 import progressBars.ProgressBarGraphics;
 /**
@@ -73,8 +74,15 @@ public class LookingForwardMainGui extends javax.swing.JFrame {
 
     private void NewTimerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTimerButtonActionPerformed
         // TODO add your handling code here:
+        CreateTimer newWindow = new CreateTimer();
+        newWindow.setVisible(true);
     }//GEN-LAST:event_NewTimerButtonActionPerformed
 
+    public void displayTimer(int hours, int minutes, int seconds) {
+        String timerText = String.format("Timer: %02d:%02d:%02d", hours, minutes, seconds);
+       
+    }
+    
     private void ExitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitButtonActionPerformed
         // TODO add your handling code here:
         System.exit(0);
@@ -107,11 +115,8 @@ public class LookingForwardMainGui extends javax.swing.JFrame {
         }
         //</editor-fold>
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new LookingForwardMainGui().setVisible(true);  
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new LookingForwardMainGui().setVisible(true);
         });
     }
 

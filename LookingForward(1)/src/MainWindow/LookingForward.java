@@ -14,7 +14,7 @@ import Timer.TimeAndDate;
  *
  * @author aly35
  */
-public class LookingForward1{
+public class LookingForward{
 
     /**
      * @param args the command line arguments

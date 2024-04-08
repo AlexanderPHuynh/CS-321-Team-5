@@ -10,16 +10,17 @@ public class CreateTimer extends JFrame {
     private JTextField minutesField;
     private JTextField secondsField;
     private JButton startButton;
-    private Timer timing;
+    private Timer countdownTimer;
     private JLabel timingLabel;
+    private int hoursLeft;
+    private int minutesLeft;
     private int secondsLeft;
-    private LookingForwardMainGui mainGui;
 
     public CreateTimer() {
         super("Create Timer");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        this.mainGui = mainGui;
+
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(4, 2));
 
@@ -37,7 +38,7 @@ public class CreateTimer extends JFrame {
         secondsField = new JTextField();
         mainPanel.add(secondsLabel);
         mainPanel.add(secondsField);
-        //CountDownTimer(Integer.parseInt(secondsField.getText()));
+
         startButton = new JButton("Start Timer");
         startButton.addActionListener(new ActionListener() {
             @Override
@@ -50,48 +51,54 @@ public class CreateTimer extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
     }
 
-    CreateTimer(LookingForwardMainGui mainGui) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+private void startTimer() {
+    int hours = Integer.parseInt(hoursField.getText());
+    int minutes = Integer.parseInt(minutesField.getText());
+    int seconds = Integer.parseInt(secondsField.getText());
     
-    public void CountDownTimer(int seconds){
-        secondsLeft = Integer.parseInt(secondsField.getText());
-        timingLabel = new JLabel(formatTime(secondsLeft));
-        timingLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        timingLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(timingLabel, BorderLayout.CENTER);
-        
-        timing = new Timer(1000, new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                secondsLeft--;
-                timingLabel.setText(formatTime(secondsLeft));
-                        if (secondsLeft <= 0){
-                            timing.stop();
-                            dispose();
-                        }
-            }
-        });
-        timing.start();
-    }
+    // Calculate the total number of seconds for the timer
+    int totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    
+    // Print the set time and initial percentage to the terminal
+    System.out.println("Timer set to: " + formatTime(totalSeconds) + ". 100%");
+    
+    // Create and start the countdown timer
+    countdownTimer = new Timer(1000, new ActionListener() {
+        int remainingSeconds = totalSeconds;
 
-    private void startTimer() {
-        int hours = Integer.parseInt(hoursField.getText());
-        int minutes = Integer.parseInt(minutesField.getText());
-        int seconds = Integer.parseInt(secondsField.getText());
-        
-        // You can create and start the timer with the specified values here
-        // For simplicity, let's just print the values for now
-        System.out.println("Timer started with " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds");
-        CountDownTimer(seconds);
-        dispose();
-    }
-    
-    private String formatTime(int s){
-        int minutes = s/60;
-        int remainingSeconds = s%60;
-        return String.format("%02d:%02d", minutes, remainingSeconds);
-    }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            remainingSeconds--;
+
+            // Calculate the percentage completed
+            int percentage = (int) ((totalSeconds - remainingSeconds) / (double) totalSeconds * 100);
+
+            // Print the current time and percentage to the terminal
+            System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
+
+            // Print the percentage whenever one of the 10s place percentages is reached
+            if (percentage % 10 == 0 && percentage != 100 && percentage != 0) {
+                System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
+            }
+
+            // Check if the timer has finished
+            if (remainingSeconds <= 0) {
+                // Timer reached zero, stop the timer
+                countdownTimer.stop();
+                dispose(); // Close the timer window
+            }
+        }
+    });
+
+    countdownTimer.start();
+}
+
+    private String formatTime(int totalSeconds) {
+    int hours = totalSeconds / 3600;
+    int minutes = (totalSeconds % 3600) / 60;
+    int seconds = totalSeconds % 60;
+    return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+}
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(new Runnable() {

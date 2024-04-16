@@ -13,7 +13,7 @@ import java.time.LocalTime;
  * @author aly35
  */
 public class TimeAndDate {
-DateTimeFormatter date_and_time = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
+DateTimeFormatter date_and_time = DateTimeFormatter.ofPattern("mm/dd/yyyy HH:mm:ss");
 LocalDateTime currentTime = LocalDateTime.now();
 LocalDateTime Time;
 
@@ -40,12 +40,12 @@ public void SetDate(int y, int m, int d, int h, int min, int sec)
     if (y >0 && y < 10000)
        year = y;
     else 
-    System.out.println("Value for year must be four digits");
+     System.out.println("Value for year must be four digits");
  
     if ( m <= 12 && m > 0)
-        month = m;
+      month = m;
     else 
-      System.out.println("Value for month must be between 1 and 12");
+     System.out.println("Value for month must be between 1 and 12");
       
     if (d <= 31 && d > 0)
         day = d;

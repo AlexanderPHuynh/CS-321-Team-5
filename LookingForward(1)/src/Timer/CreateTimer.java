@@ -1,6 +1,6 @@
 package Timer;
 
-import MainWindow.LookingForwardMainGui;
+import MainWindow.MainGui;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -15,12 +15,15 @@ public class CreateTimer extends JFrame {
     private int hoursLeft;
     private int minutesLeft;
     private int secondsLeft;
+    private MainGui mainGui;
 
-    public CreateTimer() {
+    public CreateTimer(MainGui mainGui) {
         super("Create Timer");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
+        
+        this.mainGui = mainGui;
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(4, 2));
 
@@ -75,7 +78,8 @@ private void startTimer() {
 
             // Print the current time and percentage to the terminal
             System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
-
+            
+            
             // Print the percentage whenever one of the 10s place percentages is reached
             if (percentage % 10 == 0 && percentage != 100 && percentage != 0) {
                 System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
@@ -101,11 +105,9 @@ private void startTimer() {
 }
 
     public static void main(String[] args) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new CreateTimer().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            MainGui mainGui1 = new MainGui();
+            new CreateTimer(mainGui1).setVisible(true);
         });
     }
 }

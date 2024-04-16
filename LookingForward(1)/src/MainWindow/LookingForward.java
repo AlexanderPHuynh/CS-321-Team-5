@@ -21,8 +21,9 @@ public class LookingForward{
      */
     public static void main(String[] args) {
         // TODO code application logic here
-    LookingForwardMainGui gui = new LookingForwardMainGui();
+    MainGui mainGui = new MainGui();
     
+// TODO code application logic here
     TimeAndDate startTime = new TimeAndDate();
     TimeAndDate endTime = new TimeAndDate();
     

@@ -59,6 +59,7 @@ public class CreateTimer extends JFrame {
     }
 
 private void startTimer() {
+    dispose();
     int hours = Integer.parseInt(hoursField.getText());
     int minutes = Integer.parseInt(minutesField.getText());
     int seconds = Integer.parseInt(secondsField.getText());

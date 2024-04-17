@@ -63,12 +63,6 @@ public class MainGui extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("jLabel1");
-
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setText("jLabel3");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -158,6 +152,10 @@ public class MainGui extends javax.swing.JPanel {
         System.exit(0);
     }//GEN-LAST:event_ExitButtonActionPerformed
 
+    public void updateTimerDisplay(String time) {
+        TimerDisplay.setText("Timer: " + time);
+    }
+    
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             new MainGui();

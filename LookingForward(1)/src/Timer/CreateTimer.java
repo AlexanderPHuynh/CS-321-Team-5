@@ -96,7 +96,7 @@ private void startTimer() {
                 countdownTimer.stop();
                 dispose(); // Close the timer window
             }
-            
+        updateTimerDisplay(remainingSeconds);    
         ProgBar.setValue(percentage);
         }
     });
@@ -110,6 +110,10 @@ private void startTimer() {
     int seconds = totalSeconds % 60;
     return String.format("%02d:%02d:%02d", hours, minutes, seconds);
 }
+     private void updateTimerDisplay(int remainingSeconds) {
+        String formattedTime = formatTime(remainingSeconds);
+        mainGui.updateTimerDisplay(formattedTime);
+    }
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {

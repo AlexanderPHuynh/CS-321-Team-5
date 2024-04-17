@@ -8,7 +8,7 @@ import model.Quit;
 import Timer.SaveTimer;
 import Timer.TimeAndDate;
 
-public class LookingForward {
+public class Main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Application Title"); // Set a title for your window
         MainGui mainGui = new MainGui(); // Initialize your MainGui

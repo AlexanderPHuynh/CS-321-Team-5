@@ -16,13 +16,17 @@ public class CreateTimer extends JFrame {
     private int minutesLeft;
     private int secondsLeft;
     private MainGui mainGui;
+    private JProgressBar ProgBar;
 
-    public CreateTimer(MainGui mainGui) {
+    public CreateTimer(MainGui mainGui, JProgressBar pbar) {
         super("Create Timer");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
+        ProgBar = pbar;
         this.mainGui = mainGui;
+        
+        
         
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(4, 2));
@@ -78,6 +82,7 @@ private void startTimer() {
 
             // Print the current time and percentage to the terminal
             System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
+        
             
             
             // Print the percentage whenever one of the 10s place percentages is reached
@@ -91,6 +96,8 @@ private void startTimer() {
                 countdownTimer.stop();
                 dispose(); // Close the timer window
             }
+            
+        ProgBar.setValue(percentage);
         }
     });
 
@@ -107,7 +114,8 @@ private void startTimer() {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             MainGui mainGui1 = new MainGui();
-            new CreateTimer(mainGui1).setVisible(true);
+            JProgressBar pbar = new JProgressBar();
+            new CreateTimer(mainGui1, pbar).setVisible(true);
         });
     }
 }

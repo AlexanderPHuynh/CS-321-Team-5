@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class CreateTimer extends JFrame {
+    private JTextField daysField;
     private JTextField hoursField;
     private JTextField minutesField;
     private JTextField secondsField;
@@ -25,12 +26,15 @@ public class CreateTimer extends JFrame {
         
         ProgBar = pbar;
         this.mainGui = mainGui;
-        
-        
-        
+    
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(4, 2));
-
+        mainPanel.setLayout(new GridLayout(5, 2));
+        
+        JLabel daysLabel = new JLabel("Days:");
+        daysField = new JTextField();
+        mainPanel.add(daysLabel);
+        mainPanel.add(daysField);
+        
         JLabel hoursLabel = new JLabel("Hours:");
         hoursField = new JTextField();
         mainPanel.add(hoursLabel);
@@ -60,12 +64,13 @@ public class CreateTimer extends JFrame {
 
 private void startTimer() {
     dispose();
+    int days = Integer.parseInt(daysField.getText());
     int hours = Integer.parseInt(hoursField.getText());
     int minutes = Integer.parseInt(minutesField.getText());
     int seconds = Integer.parseInt(secondsField.getText());
     
     // Calculate the total number of seconds for the timer
-    int totalSeconds = hours * 3600 + minutes * 60 + seconds;
+    int totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;
     
     // Print the set time and initial percentage to the terminal
     System.out.println("Timer set to: " + formatTime(totalSeconds) + ". 100%");
@@ -106,10 +111,11 @@ private void startTimer() {
 }
 
     private String formatTime(int totalSeconds) {
-    int hours = totalSeconds / 3600;
+    int days = totalSeconds / 86400;
+    int hours = (totalSeconds / 3600) - (days * 24);
     int minutes = (totalSeconds % 3600) / 60;
     int seconds = totalSeconds % 60;
-    return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    return String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds);
 }
      private void updateTimerDisplay(int remainingSeconds) {
         String formattedTime = formatTime(remainingSeconds);

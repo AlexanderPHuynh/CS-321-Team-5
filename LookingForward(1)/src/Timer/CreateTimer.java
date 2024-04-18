@@ -17,15 +17,17 @@ public class CreateTimer extends JFrame {
     private int minutesLeft;
     private int secondsLeft;
     private MainGui mainGui;
-    private JProgressBar ProgBar;
+    private int timerId;
+    private JProgressBar activeProgressBar;
 
-    public CreateTimer(MainGui mainGui, JProgressBar pbar) {
+    public CreateTimer(MainGui mainGui, JProgressBar pbar, int timerId) {
         super("Create Timer");
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         
-        ProgBar = pbar;
+        this.activeProgressBar = pbar;
         this.mainGui = mainGui;
+        this.timerId = timerId;
     
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(5, 2));
@@ -89,6 +91,8 @@ private void startTimer() {
             // Print the current time and percentage to the terminal
             System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
         
+            activeProgressBar.setValue(percentage);
+            updateTimerDisplay(remainingSeconds,timerId);    
             
             
             // Print the percentage whenever one of the 10s place percentages is reached
@@ -102,8 +106,7 @@ private void startTimer() {
                 countdownTimer.stop();
                 dispose(); // Close the timer window
             }
-        updateTimerDisplay(remainingSeconds);    
-        ProgBar.setValue(percentage);
+        
         }
     });
 
@@ -117,16 +120,17 @@ private void startTimer() {
     int seconds = totalSeconds % 60;
     return String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds);
 }
-     private void updateTimerDisplay(int remainingSeconds) {
+     private void updateTimerDisplay(int remainingSeconds,int timerId) {
         String formattedTime = formatTime(remainingSeconds);
-        mainGui.updateTimerDisplay(formattedTime);
+        mainGui.updateTimerDisplay(formattedTime, timerId);
     }
 
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             MainGui mainGui1 = new MainGui();
             JProgressBar pbar = new JProgressBar();
-            new CreateTimer(mainGui1, pbar).setVisible(true);
+            int timerId = 1;
+            new CreateTimer(mainGui1, pbar, timerId).setVisible(true);
         });
     }
 }

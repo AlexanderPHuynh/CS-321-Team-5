@@ -143,20 +143,20 @@ public class MainGui extends javax.swing.JPanel {
         if (jProgressBar1.isVisible() == false)
         {
           jProgressBar1.setVisible(true);
-          CreateTimer newWindow = new CreateTimer(this, jProgressBar1);
+          CreateTimer newWindow = new CreateTimer(this, jProgressBar1,1);
           newWindow.setVisible(true);
         }
         else if (jProgressBar2.isVisible() == false)
         {
           jProgressBar2.setVisible(true);
-          CreateTimer newWindow = new CreateTimer(this, jProgressBar2);
+          CreateTimer newWindow = new CreateTimer(this, jProgressBar2,2);
           newWindow.setVisible(true);
           
         }   
         else if (jProgressBar3.isVisible() == false)
         {
           jProgressBar3.setVisible(true);
-          CreateTimer newWindow = new CreateTimer(this, jProgressBar3);
+          CreateTimer newWindow = new CreateTimer(this, jProgressBar3,3);
           newWindow.setVisible(true);
         }                      
     }//GEN-LAST:event_NewTimerButtonButtonActionPermformed
@@ -165,13 +165,21 @@ public class MainGui extends javax.swing.JPanel {
         System.exit(0);
     }//GEN-LAST:event_ExitButtonActionPerformed
 
-    public void updateTimerDisplay(String time) {
-        TimerDisplay1.setText("Timer 1: " + time);
-        TimerDisplay2.setText("Timer 1: " + time);
-        TimerDisplay3.setText("Timer 1: " + time);
-    
-    }
-    
+    public void updateTimerDisplay(String time, int timerId) {
+        switch (timerId) {
+        case 1:
+            TimerDisplay1.setText("Timer 1: " + time);
+            break;
+        case 2:
+            TimerDisplay2.setText("Timer 2: " + time);
+            break;
+        case 3:
+            TimerDisplay3.setText("Timer 3: " + time);
+            break;
+        default:
+            break;
+        }
+    }    
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
             new MainGui();

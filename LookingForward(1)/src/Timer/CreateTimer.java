@@ -64,10 +64,10 @@ public class CreateTimer extends JFrame {
 
 private void startTimer() {
     dispose();
-    int days = Integer.parseInt(daysField.getText());
-    int hours = Integer.parseInt(hoursField.getText());
-    int minutes = Integer.parseInt(minutesField.getText());
-    int seconds = Integer.parseInt(secondsField.getText());
+    int days = daysField.getText().isEmpty() ? 0 : Integer.parseInt(daysField.getText());
+    int hours = hoursField.getText().isEmpty() ? 0 : Integer.parseInt(hoursField.getText());
+    int minutes = minutesField.getText().isEmpty() ? 0 : Integer.parseInt(minutesField.getText());
+    int seconds = secondsField.getText().isEmpty() ? 0 : Integer.parseInt(secondsField.getText());
     
     // Calculate the total number of seconds for the timer
     int totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;

@@ -19,7 +19,8 @@ public class CreateTimer extends JFrame {
     private MainGui mainGui;
     private int timerId;
     private JProgressBar activeProgressBar;
-
+    private EndTimer endTimer;
+    
     public CreateTimer(MainGui mainGui, JProgressBar pbar, int timerId) {
         super("Create Timer");
         setSize(300, 200);
@@ -28,31 +29,44 @@ public class CreateTimer extends JFrame {
         this.activeProgressBar = pbar;
         this.mainGui = mainGui;
         this.timerId = timerId;
-    
+        endTimer = new EndTimer();
+        
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayout(5, 2));
+        mainPanel.setBackground(Color.PINK); // Set the background color to pink
+        
+        Font font = new Font("Berlin Sans FB", Font.PLAIN, 18);
         
         JLabel daysLabel = new JLabel("Days:");
         daysField = new JTextField();
+        daysLabel.setFont(font);
+        daysField.setFont(font);
         mainPanel.add(daysLabel);
         mainPanel.add(daysField);
         
         JLabel hoursLabel = new JLabel("Hours:");
         hoursField = new JTextField();
+        hoursLabel.setFont(font);
+        hoursField.setFont(font);
         mainPanel.add(hoursLabel);
         mainPanel.add(hoursField);
 
         JLabel minutesLabel = new JLabel("Minutes:");
         minutesField = new JTextField();
+        minutesLabel.setFont(font);
+        minutesField.setFont(font);
         mainPanel.add(minutesLabel);
         mainPanel.add(minutesField);
 
         JLabel secondsLabel = new JLabel("Seconds:");
         secondsField = new JTextField();
+        secondsLabel.setFont(font);
+        secondsField.setFont(font);
         mainPanel.add(secondsLabel);
         mainPanel.add(secondsField);
 
         startButton = new JButton("Start Timer");
+        startButton.setFont(font);
         startButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,9 +116,7 @@ private void startTimer() {
 
             // Check if the timer has finished
             if (remainingSeconds <= 0) {
-                // Timer reached zero, stop the timer
-                countdownTimer.stop();
-                dispose(); // Close the timer window
+                endTimer.resetTimer(countdownTimer,activeProgressBar);
             }
         
         }

@@ -78,61 +78,66 @@ public class CreateTimer extends JFrame {
         add(mainPanel, BorderLayout.CENTER);
     }
 
-private void startTimer() {
-    dispose();
-    int days = daysField.getText().isEmpty() ? 0 : Integer.parseInt(daysField.getText());
-    int hours = hoursField.getText().isEmpty() ? 0 : Integer.parseInt(hoursField.getText());
-    int minutes = minutesField.getText().isEmpty() ? 0 : Integer.parseInt(minutesField.getText());
-    int seconds = secondsField.getText().isEmpty() ? 0 : Integer.parseInt(secondsField.getText());
-    
-    // Calculate the total number of seconds for the timer
-    int totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;
-    
-    // Print the set time and initial percentage to the terminal
-    System.out.println("Timer set to: " + formatTime(totalSeconds) + ". 100%");
-    
-    // Create and start the countdown timer
-    countdownTimer = new Timer(1000, new ActionListener() {
-        int remainingSeconds = totalSeconds;
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            remainingSeconds--;
-
-            // Calculate the percentage completed
-            int percentage = (int) ((totalSeconds - remainingSeconds) / (double) totalSeconds * 100);
-
-            // Print the current time and percentage to the terminal
-            System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
+    private void startTimer() {
+        dispose();
+        int days = daysField.getText().isEmpty() ? 0 : Integer.parseInt(daysField.getText());
+        int hours = hoursField.getText().isEmpty() ? 0 : Integer.parseInt(hoursField.getText());
+        int minutes = minutesField.getText().isEmpty() ? 0 : Integer.parseInt(minutesField.getText());
+        int seconds = secondsField.getText().isEmpty() ? 0 : Integer.parseInt(secondsField.getText());
         
-            activeProgressBar.setValue(percentage);
-            updateTimerDisplay(remainingSeconds,timerId);    
-            
-            
-            // Print the percentage whenever one of the 10s place percentages is reached
-            if (percentage % 10 == 0 && percentage != 100 && percentage != 0) {
-                System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
-            }
+        // Calculate the total number of seconds for the timer
+        int totalSeconds = days * 86400 + hours * 3600 + minutes * 60 + seconds;
+        
+        // Print the set time and initial percentage to the terminal
+        System.out.println("Timer set to: " + formatTime(totalSeconds) + ". 100%");
+        
+        // Create and start the countdown timer
+        countdownTimer = new Timer(1000, new ActionListener() {
+            int remainingSeconds = totalSeconds;
 
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remainingSeconds--;
+
+                // Calculate the percentage completed
+                int percentage = (int) ((totalSeconds - remainingSeconds) / (double) totalSeconds * 100);
+
+                // Print the current time and percentage to the terminal
+                System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
+
+<<<<<<< Updated upstream
             // Check if the timer has finished
             if (remainingSeconds <= 0) {
                 endTimer.resetTimer(countdownTimer,activeProgressBar);
+=======
+                activeProgressBar.setValue(percentage);
+                updateTimerDisplay(remainingSeconds, timerId);
+                
+                // Update the image based on progress (Change added here)
+                mainGui.updateImageBasedOnProgress(percentage, timerId);
+                
+                // Check if the timer has finished
+                if (remainingSeconds <= 0) {
+                    // Timer reached zero, stop the timer
+                    countdownTimer.stop();
+                    dispose(); // Close the timer window
+                }
+>>>>>>> Stashed changes
             }
-        
-        }
-    });
+        });
 
-    countdownTimer.start();
-}
+        countdownTimer.start();
+    }
 
     private String formatTime(int totalSeconds) {
-    int days = totalSeconds / 86400;
-    int hours = (totalSeconds / 3600) - (days * 24);
-    int minutes = (totalSeconds % 3600) / 60;
-    int seconds = totalSeconds % 60;
-    return String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds);
-}
-     private void updateTimerDisplay(int remainingSeconds,int timerId) {
+        int days = totalSeconds / 86400;
+        int hours = (totalSeconds / 3600) - (days * 24);
+        int minutes = (totalSeconds % 3600) / 60;
+        int seconds = totalSeconds % 60;
+        return String.format("%02d:%02d:%02d:%02d", days, hours, minutes, seconds);
+    }
+
+    private void updateTimerDisplay(int remainingSeconds, int timerId) {
         String formattedTime = formatTime(remainingSeconds);
         mainGui.updateTimerDisplay(formattedTime, timerId);
     }

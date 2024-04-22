@@ -3,10 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< Updated upstream
             <file>file:/C:/Users/apoul/OneDrive/Desktop/School/Junior%20Year/Spring%202024/Java/Java/CS-321-Team-5/LookingForward(1)/src/Timer/CreateTimer.java</file>
             <file>file:/C:/Users/apoul/OneDrive/Desktop/School/Junior%20Year/Spring%202024/Java/Java/CS-321-Team-5/LookingForward(1)/src/Timer/EndTimer.java</file>
             <file>file:/C:/Users/apoul/OneDrive/Desktop/School/Junior%20Year/Spring%202024/Java/Java/CS-321-Team-5/LookingForward(1)/src/MainWindow/MainGui.java</file>
             <file>file:/C:/Users/apoul/OneDrive/Desktop/School/Junior%20Year/Spring%202024/Java/Java/CS-321-Team-5/LookingForward(1)/src/MainWindow/Main.java</file>
+=======
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/MainWindow/MainGui.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/model/Quit.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/Timer/SaveTimer.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/Timer/CreateTimer.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/Timer/EndTimer.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/progressBars/ProgressBarGraphics.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/Timer/TimeAndDate.java</file>
+            <file>file:/C:/Users/Catherine/OneDrive/Documents/GitHub/CS-321-Team-5/LookingForward(1)/src/MainWindow/Main.java</file>
+>>>>>>> Stashed changes
         </group>
     </open-files>
 </project-private>

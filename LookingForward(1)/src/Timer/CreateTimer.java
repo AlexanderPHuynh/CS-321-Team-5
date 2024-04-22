@@ -113,7 +113,8 @@ private void startTimer() {
             if (percentage % 10 == 0 && percentage != 100 && percentage != 0) {
                 System.out.println(formatTime(remainingSeconds) + ". " + percentage + "%");
             }
-
+            
+            mainGui.updateImageBasedOnProgress(percentage, timerId);
             // Check if the timer has finished
             if (remainingSeconds <= 0) {
                 endTimer.resetTimer(countdownTimer,activeProgressBar);
